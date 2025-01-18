@@ -1,0 +1,10 @@
+{
+    " Not in labor force": "Not Employed",
+    " Children or Armed Forces": "Children or Armed Forces",
+    " Full-time schedules": "FTE",
+    " Unemployed full-time": "FTE",
+    " Unemployed part- time": "PTE",
+    " PT for non-econ reasons usually FT": "PTE",
+    " PT for econ reasons usually PT": "PTE",
+    " PT for econ reasons usually FT": "PTE"
+}
