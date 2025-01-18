@@ -1,0 +1,19 @@
+{
+    " Less than 1st grade": "Below High School",
+    " 1st 2nd 3rd or 4th grade": "Below High School",
+    " 5th or 6th grade": "Below High School",
+    " 7th and 8th grade": "Below High School",
+    " 9th grade": "Below High School",
+    " 10th grade": "Below High School",
+    " 11th grade": "Below High School",
+    " 12th grade no diploma": "Below High School",
+    " High school graduate": "High School Graduate",
+    " Some college but no degree": "Some College",
+    " Associates degree-occup /vocational": "Some College",
+    " Associates degree-academic program": "Some College",
+    " Bachelors degree(BA AB BS)": "College Graduate",
+    " Masters degree(MA MS MEng MEd MSW MBA)": "Advanced Degree",
+    " Prof school degree (MD DDS DVM LLB JD)": "Advanced Degree",
+    " Doctorate degree(PhD EdD)": "Advanced Degree",
+    " Children": "Children"
+}
