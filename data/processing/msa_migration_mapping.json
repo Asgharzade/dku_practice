@@ -1,0 +1,12 @@
+{
+    " ?": "Not in universe",
+    " MSA to MSA": "MSA movement",
+    " NonMSA to nonMSA": "Non-MSA movement",
+    " MSA to nonMSA": "Mixed movement",
+    " NonMSA to MSA": "Mixed movement",
+    " Nonmover": "No movement",
+    " Not in universe": "Not in universe",
+    " Not identifiable": "Not in universe",
+    " Abroad to MSA": "International",
+    " Abroad to nonMSA": "International"
+}

@@ -40,5 +40,5 @@
     "veterans_benefits": [0, 2, 1],
     "weeks_worked_in_year": "continuous",
     "year": [94, 95],
-    "samole": "no be ignored"
+    "target": "target variable"
 }

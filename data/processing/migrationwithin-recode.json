@@ -1,0 +1,11 @@
+{
+    " ?": "Not in universe",
+    " Same county": "Same area",
+    " Nonmover": "Same area",
+    " Different region": "Different area",
+    " Different county same state": "Different area",
+    " Not in universe": "Not in universe",
+    " Different division same region": "Different area",
+    " Abroad": "Different area",
+    " Different state same division": "Different area"
+}
