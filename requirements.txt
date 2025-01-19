@@ -7,3 +7,4 @@ dash
 dash-bootstrap-components
 ydata-profiling
 ipywidgets
+dash_auth
