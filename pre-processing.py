@@ -43,6 +43,8 @@ with open('data/processing/msa_migration_mapping.json', 'r') as f:
 with open('data/processing/tax_status_mapping.json', 'r') as f:
     tax_status_mapping = json.load(f)
 
+with open("data/processing/citizenship_mapping.json", "r") as f:
+    citizenship_mapping = json.load(f)
 
 def load_data(file_dir: str) -> pd.DataFrame:
     '''
@@ -100,6 +102,7 @@ def load_data(file_dir: str) -> pd.DataFrame:
     df['migration_code_change_in_reg'].map(broader_values_mapping)
     df['tax_filer_stat'] = df['tax_filer_stat'].map(tax_status_mapping)
     df['class_of_worker'] = df['class_of_worker'].map(class_worker_mapping)
+    df['citizenship'] = df['citizenship'].map(citizenship_mapping)
 
     # map additional values
     veteran_status_mapping = {
@@ -132,7 +135,7 @@ for finename in data_input:
     df.to_csv(f'data/processed/{finename.split("/")[-1]}', index=False)
     profile = ProfileReport(df, title=f"census data report for {finename.split("/")[-1]}")
     print(f"Processing {finename} completed")
-    profile.to_file(f'report/processed/{finename.split("/")[-1]}.html')
+    profile.to_file(f'report/processed/{finename.split("/")[-1]}.json')
     
 
 
