@@ -58,6 +58,7 @@ def train_and_evaluate_rf(X_train, X_test, y_train, y_test, n_estimators=100, ra
     plt.title('Confusion Matrix')
     plt.ylabel('True Label')
     plt.xlabel('Predicted Label')
+    plt.savefig('confusion_matrix.png')
     plt.close()
     
     return {
@@ -85,4 +86,5 @@ def plot_feature_importance(feature_importance, top_n=10):
     plt.title(f'Top {top_n} Most Important Features')
     plt.xlabel('Importance Score')
     plt.ylabel('Feature')
+    plt.savefig('feature_importance.png')
     plt.close()
