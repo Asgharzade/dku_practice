@@ -1,0 +1,7 @@
+{
+    " Native- Born in the United States": "Native",
+    " Foreign born- Not a citizen of U S ": "Foreign",
+    " Foreign born- U S citizen by naturalization": "Naturalized",
+    " Native- Born abroad of American Parent(s)": "Native",
+    " Native- Born in Puerto Rico or U S Outlying": "Native"
+}

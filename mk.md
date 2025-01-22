@@ -1,49 +1,49 @@
 ## Variable Mapping
 
-| Column Name                                 | Data Type | Required | Mapping |
-|---------------------------------------------|-----------|----------|---------|
-| age                                         | int64     | y        |         |
-| class_of_worker                             | object    | y        | map     |
-| detailed_industry_recode                    | object    | y        | map     |
-| detailed_occupation_recode                  | object    | y        | map     |
-| education                                   | object    | y        | map     |
-| wage_per_hour                               | int64     | y        |         |
-| enroll_in_edu_inst_last_wk                  | object    | y        |         |
-| marital_stat                                | object    | y        | map     |
-| major_industry_code                         | object    | y        |         |
-| major_occupation_code                       | object    | y        |         |
-| race                                        | object    | y        |         |
-| hispanic_origin                             | object    | n        |         |
-| sex                                         | object    | y        |         |
-| member_of_a_labor_union                     | object    | y        |         |
-| reason_for_unemployment                     | object    | y        |         |
-| full_or_part_time_employment_stat           | object    | y        | map     |
-| capital_gains                               | int64     | y        |         |
-| capital_losses                              | int64     | y        |         |
-| dividends_from_stocks                       | int64     | y        |         |
-| tax_filer_stat                              | object    | y        | map     |
-| region_of_previous_residence                | object    | y        |         |
-| state_of_previous_residence                 | object    | n        |         |
-| detailed_household_and_family_stat          | object    | y        | map     |
-| detailed_household_summary_in_household     | object    | y        | map     |
-| instance_weight                             | float64   | n        |         |
-| migration_code_change_in_msa                | object    | y        | map     |
-| migration_code_change_in_reg                | object    | y        |         |
-| migration_code_move_within_reg              | object    | n        |         |
-| live_in_this_house_1_year_ago               | object    | y        |         |
-| migration_prev_res_in_sunbelt               | object    | y        |         |
-| num_persons_worked_for_employer             | int64     | y        |         |
-| family_members_under_18                     | object    | n        |         |
-| country_of_birth_father                     | object    | y        |         |
-| country_of_birth_mother                     | object    | y        |         |
-| country_of_birth_self                       | object    | y        |         |
-| citizenship                                 | object    | y        |         |
-| own_business_or_self_employed               | object    | y        | map     |
-| fill_inc_questionnaire_for_veterans_admin   | object    | y        |         |
-| veterans_benefits                           | object    | y        |         |
-| weeks_worked_in_year                        | int64     | y        |         |
-| year                                        | int64     | y        |         |
-| target                                      | object    | T        |         |
+| Column Name                                 | Data Type | Required | Mapping | Post Processing|
+|---------------------------------------------|-----------|----------|---------|----------------|
+| age                                         | int64     | y        |         |ok, only over 18    |
+| class_of_worker                             | object    | y        | map     |ok, keep only 5 cats|
+| detailed_industry_recode                    | object    | y        | map     |no,high corr with class_of_worker|
+| detailed_occupation_recode                  | object    | y        | map     |no,high corr with class_of_worker|
+| education                                   | object    | y        | map     |ok|
+| wage_per_hour                               | int64     | y        |         |ok|
+| enroll_in_edu_inst_last_wk                  | object    | y        |         |ok|
+| marital_stat                                | object    | y        | map     |ok|
+| major_industry_code                         | object    | y        |         |ok|
+| major_occupation_code                       | object    | y        |         |ok|
+| race                                        | object    | y        |         |ok|
+| hispanic_origin                             | object    | n        |         |not relative|
+| sex                                         | object    | y        |         |ok, might be sensitive|
+| member_of_a_labor_union                     | object    | y        |         |ok, just keep 'Yes'|
+| reason_for_unemployment                     | object    | y        |         |ok|
+| full_or_part_time_employment_stat           | object    | y        | map     |ok|
+| capital_gains                               | int64     | y        |         |ok|
+| capital_losses                              | int64     | y        |         |ok|
+| dividends_from_stocks                       | int64     | y        |         |ok|
+| tax_filer_stat                              | object    | y        | map     |ok|
+| region_of_previous_residence                | object    | y        |         |ok. just four cats|
+| state_of_previous_residence                 | object    | n        |         |no, too many cats|
+| detailed_household_and_family_stat          | object    | y        | map     |ok|
+| detailed_household_summary_in_household     | object    | y        | map     |no, too many cats|
+| instance_weight                             | float64   | n        |         |no, instructed|
+| migration_code_change_in_msa                | object    | y        | map     |no, high corr with move_reg|
+| migration_code_change_in_reg                | object    | y        |         |ok, only two cats|
+| migration_code_move_within_reg              | object    | n        |         |no, high corr with move_reg|
+| live_in_this_house_1_year_ago               | object    | y        |         |ok|
+| migration_prev_res_in_sunbelt               | object    | y        |         |ok|
+| num_persons_worked_for_employer             | int64     | y        |         |ok|
+| family_members_under_18                     | object    | n        |         |ok|
+| country_of_birth_father                     | object    | y        |         |no, high corr with citizenship|
+| country_of_birth_mother                     | object    | y        |         |no, high corr with citizenship|
+| country_of_birth_self                       | object    | y        |         |no, high corr with citizenship|
+| citizenship                                 | object    | y        |         |ok|
+| own_business_or_self_employed               | object    | y        | map     |ok|
+| fill_inc_questionnaire_for_veterans_admin   | object    | y        |         |no, using veterans_benefits instead|
+| veterans_benefits                           | object    | y        |         |ok|
+| weeks_worked_in_year                        | int64     | y        |         |ok|
+| year                                        | int64     | y        |         |not related|
+| target                                      | object    | T        |         |Target|
 
 
 
@@ -52,7 +52,12 @@ There were 3229 duplicated records.. All belong to the -50k category
 
 
 ## Remapping
-Remapping was done for perfrom feature engineering and grouping various 
+Remapping was done for perfrom feature engineering and grouping various
+
+
+
+# Post Processing
+
 
 
 
