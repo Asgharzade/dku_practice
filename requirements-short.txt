@@ -1,8 +1,0 @@
-pandas
-numpy
-scikit-learn
-matplotlib
-seaborn
-dash
-dash-bootstrap-components
-dash_auth

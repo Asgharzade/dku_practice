@@ -1,0 +1,226 @@
+fitting model rfc_v3 started at 2025-01-21 19:23
+
+Train data: ###############################
+
+X_train shape: (143468, 82)
+
+Test data: ###############################
+
+X_test shape: (72023, 82)
+
+Original class distribution:
+Counter({1: 131088, 0: 12380})
+
+Resampled class distribution after OSS:
+Counter({1: 128177, 0: 12380})
+
+Best parameters found: {'num_leaves': 125, 'learning_rate': 0.09844637350140116, 'feature_fraction': 0.7519567183405381, 'bagging_fraction': 0.980954530927508, 'bagging_freq': 4, 'objective': 'binary', 'metric': 'binary_logloss', 'boosting_type': 'gbdt', 'verbose': 0}
+
+Model Evaluation:
+-----------------
+
+Accuracy: 0.9397
+
+ROC AUC: 0.9331
+
+Classification Report:
+
+              precision    recall  f1-score   support
+
+           0       0.71      0.50      0.59      6186
+           1       0.95      0.98      0.97     65837
+
+    accuracy                           0.94     72023
+   macro avg       0.83      0.74      0.78     72023
+weighted avg       0.93      0.94      0.93     72023
+
+
+Top 10 Most Important Features:
+
+                                  feature  importance
+0                                     age        2143
+4                   dividends_from_stocks        1058
+6                    weeks_worked_in_year         674
+5         num_persons_worked_for_employer         654
+3                          capital_losses         653
+2                           capital_gains         631
+1                           wage_per_hour         528
+50                              sex__male         248
+19                   marital_stat_married         222
+13             education_college_graduate         213
+14         education_high_school_graduate         201
+11              education_advanced_degree         182
+57  full_or_part_time_employment_stat_fte         182
+10          class_of_worker_self-employed         180
+15                 education_some_college         172
+
+confusion_matrix:
+[[ 3079  3107]
+ [ 1239 64598]]
+--------------------
+
+Confusion Matrix Values:
+--------------------
+
+True Negatives (TN): 3079
+
+False Positives (FP): 3107
+
+False Negatives (FN): 1239
+
+True Positives (TP): 64598
+
+Confusion Matrix Percentages:
+
+-------------------------
+
+True Negatives (TN): 4.28%
+
+False Positives (FP): 4.31%
+
+False Negatives (FN): 1.72%
+
+True Positives (TP): 89.69%
+
+Feature Correlation Analysis:
+
+                                   age  dividends_from_stocks  weeks_worked_in_year  num_persons_worked_for_employer  capital_losses
+correlation_with_prediction  -0.031167              -0.226163             -0.195690                        -0.177120       -0.195403
+mean_value_when_predicted_1  44.584551             142.603707             30.487113                         2.531261       33.681752
+mean_value_when_predicted_0  46.910144            2203.027327             49.830709                         4.320982      288.045855
+
+--------------------
+
+Detailed Model Performance Metrics:
+
+Accuracy: 0.9397
+
+True Positive Rate: 0.9812
+
+True Negative Rate: 0.4977
+
+Positive Predictive Value: 0.9541
+
+            fpr       tpr
+0      0.000000  0.000000
+1      0.000000  0.000015
+2      0.000000  0.000608
+3      0.000000  0.000668
+4      0.000000  0.000805
+...         ...       ...
+12795  0.990139  0.999970
+12796  0.990139  0.999985
+12797  0.991109  0.999985
+12798  0.991109  1.000000
+12799  1.000000  1.000000
+
+[12800 rows x 2 columns]
+
+Model Configuration:
+
+--------------------
+
+Number of training rounds: 100
+
+Model Parameters:
+
+num_leaves: 125
+
+learning_rate: 0.09844637350140116
+
+feature_fraction: 0.7519567183405381
+
+bagging_fraction: 0.980954530927508
+
+bagging_freq: 4
+
+objective: binary
+
+metric: binary_logloss
+
+boosting_type: gbdt
+
+verbose: 0
+
+Class Distribution in Training Data:
+
+Class counts: 
+target
+1    131088
+0     12380
+Name: count, dtype: int64
+
+Class proportions: 
+target
+1    0.913709
+0    0.086291
+Name: proportion, dtype: float64
+
+Training History:
+
+----------------
+
+train: OrderedDict({'binary_logloss': 0.12563783084868524})
+
+valid: OrderedDict({'binary_logloss': 0.15684916802245616})
+
+Feature Importance Percentages (Top 10):
+
+                                  feature  importance_percentage
+0                                     age                  17.28
+4                   dividends_from_stocks                   8.53
+6                    weeks_worked_in_year                   5.44
+5         num_persons_worked_for_employer                   5.27
+3                          capital_losses                   5.27
+2                           capital_gains                   5.09
+1                           wage_per_hour                   4.26
+50                              sex__male                   2.00
+19                   marital_stat_married                   1.79
+13             education_college_graduate                   1.72
+14         education_high_school_graduate                   1.62
+11              education_advanced_degree                   1.47
+57  full_or_part_time_employment_stat_fte                   1.47
+10          class_of_worker_self-employed                   1.45
+15                 education_some_college                   1.39
+
+Prediction Threshold Analysis:
+
+   threshold  accuracy
+0        0.1  0.928440
+1        0.2  0.933035
+2        0.3  0.937339
+3        0.4  0.939964
+4        0.5  0.939658
+5        0.6  0.937298
+6        0.7  0.929647
+7        0.8  0.911112
+8        0.9  0.863849
+
+Model Complexity Analysis:
+
+Number of trees: 100
+
+Total number of leaves: 12500
+
+Prediction Confidence Analysis:
+
+                      actual          
+                       count      mean
+prediction_confidence                 
+(7.86e-05, 0.0677]       937  0.033084
+(0.0677, 0.134]          354  0.124294
+(0.134, 0.201]           407  0.226044
+(0.201, 0.267]           485  0.257732
+(0.267, 0.334]           562  0.371886
+(0.334, 0.401]           602  0.403654
+(0.401, 0.467]           656  0.492378
+(0.467, 0.534]           659  0.544765
+(0.534, 0.6]             732  0.598361
+(0.6, 0.667]             875  0.664000
+(0.667, 0.734]          1294  0.728748
+(0.734, 0.8]            1733  0.789960
+(0.8, 0.867]            2682  0.840790
+(0.867, 0.933]          5506  0.902470
+(0.933, 1.0]           54539  0.987477
+
+Model saved as best_model.pkl

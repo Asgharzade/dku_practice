@@ -3,7 +3,7 @@ import seaborn as sns
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
 
 
 features_ok = [
@@ -108,10 +108,10 @@ bin_cols_to_keep = [
     'live_in_this_house_1_year_ago__yes',
     'migration_prev_res_in_sunbelt__no',
     'migration_prev_res_in_sunbelt__yes',
-    'family_members_under_18__both_parents_present',
-    'family_members_under_18__father_only_present',
-    'family_members_under_18__mother_only_present',
-    'family_members_under_18__neither_parent_present',
+    #'family_members_under_18__both_parents_present',
+    #'family_members_under_18__father_only_present',
+    #'family_members_under_18__mother_only_present',
+    #'family_members_under_18__neither_parent_present',
     'citizenship_foreign',
     'citizenship_native',
     'own_business_or_self_employed_no',
@@ -123,6 +123,8 @@ bin_cols_to_keep = [
 
 
 def post_processing(datadir: str,
+                    get_dummies: bool = True,
+                    over_18: bool = True,
                     features_ok = features_ok,
                     bin_cols_to_keep = bin_cols_to_keep) -> tuple:
     """
@@ -137,23 +139,38 @@ def post_processing(datadir: str,
     # Select the features
     df_selected = df[features_ok]
 
-    # get numerical columns (non-object)
-    numeric_cols = df_selected.select_dtypes(exclude=['object']).columns
-    print(f"Number of numeric columns: {len(numeric_cols)}")
-    df_numeric = df_selected[numeric_cols]
+    # keep over 18 yo
+    if over_18:
+        df_selected = df_selected[df_selected['age'] >= 18]
 
-    # get categorical columns
-    categorical_cols = df_selected.select_dtypes(include=['object']).columns
-    df_binary = pd.get_dummies(df_selected[categorical_cols], drop_first=False)
-    df_binary.columns = [x.lower() for x in df_binary.columns.str.replace(' ', '_')]
-    print(f"Original shape: {df_selected.shape}")
-    print(f"Binary shape: {df_binary.shape}")
-    # select only the bin columns that are in the list of columns to keep
-    df_binary = df_binary[bin_cols_to_keep]
+    if get_dummies:
+        # get numerical columns (non-object)
+        numeric_cols = df_selected.select_dtypes(exclude=['object']).columns
+        print(f"Number of numeric columns: {len(numeric_cols)}")
+        df_numeric = df_selected[numeric_cols]
 
-    # merge the two dataframes
-    df_prepared = pd.concat([df_numeric, df_binary], axis=1)
+        # get categorical columns
+        categorical_cols = df_selected.select_dtypes(include=['object']).columns
+        df_binary = pd.get_dummies(df_selected[categorical_cols], drop_first=False)
+        df_binary.columns = [x.lower() for x in df_binary.columns.str.replace(' ', '_')]
+        print(f"Original shape: {df_selected.shape}")
+        print(f"Binary shape: {df_binary.shape}")
+        # select only the bin columns that are in the list of columns to keep
+        df_binary = df_binary[bin_cols_to_keep]
 
+        # merge the two dataframes
+        df_prepared = pd.concat([df_numeric, df_binary], axis=1)
+    
+    else:
+        numeric_cols = df_selected.select_dtypes(exclude=['object']).columns
+        df_numeric = df_selected[numeric_cols]
+        print(f"Number of numeric columns: {len(numeric_cols)}")
+
+        categorical_cols = df_selected.select_dtypes(include=['object']).columns
+        df_categorical = df_selected[categorical_cols]
+        print(f"Number of numeric columns: {len(categorical_cols)}")
+
+        df_prepared = pd.concat([df_numeric, df_categorical], axis=1)
     # Split the data
     y = df_prepared['target']
     X = df_prepared.drop('target', axis=1)
