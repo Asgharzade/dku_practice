@@ -1,10 +1,14 @@
 import dash
 from dash import dcc, html
 import dash_auth
+import dotenv
+import os
+# Load environment variables from a .env file
+dotenv.load_dotenv()
 
-# Define username and password pairs
+# Retrieve username and password from environment variables
 VALID_USERNAME_PASSWORD_PAIRS = {
-    'dataiku': 'dataiku',
+    os.getenv('USERNAME'): os.getenv('PASSWORD'),
 }
 
 app = dash.Dash(__name__)
