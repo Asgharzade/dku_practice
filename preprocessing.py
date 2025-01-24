@@ -144,15 +144,14 @@ def preprocess():
         print(f"Processing {filename}")
         df = load_data(filename)
         df.to_csv(f'data/processed/{filename.split("/")[-1]}', index=False)
-        # profile = ProfileReport(df, title=f"census data report for {filename.split("/")[-1]}",explorative= True)
-        # print(f"Processing {filename} completed")
-        # profile.to_file(f'report/processed/{filename.split("/")[-1]}.html')
+        profile = ProfileReport(df, title=f"census data report for {filename.split("/")[-1]}",explorative= True)
+        print(f"Processing {filename} completed")
+        profile.to_file(f'report/processed/{filename.split("/")[-1]}.html')
 
         #getting the correlation from the report json file -- ONLY FOR TRAIN SET -- 
         if filename == data_input[0]:
-            continue
-            # profile = ProfileReport(df, title=f"census data report for {filename.split("/")[-1]}",explorative= True)
-            # profile.to_file(f'report/processed/{filename.split("/")[-1]}.json')
+            profile = ProfileReport(df, title=f"census data report for {filename.split("/")[-1]}",explorative= True)
+            profile.to_file(f'report/processed/{filename.split("/")[-1]}.json')
 
 
 
