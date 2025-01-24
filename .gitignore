@@ -21,7 +21,7 @@ sdist/
 var/
 data/raw/
 data/info/
-data/processed
+data/processed/
 wheels/
 share/python-wheels/
 *.egg-info/

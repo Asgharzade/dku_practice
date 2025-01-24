@@ -1,0 +1,212 @@
+fitting model rfc_v1 started at 2025-01-23 19:58
+
+Train data: ###############################
+
+X_train shape: (143468, 82)
+
+Test data: ###############################
+
+X_test shape: (72023, 82)
+
+Original class distribution:
+Counter({1: 131088, 0: 12380})
+
+Resampled class distribution after OSS:
+Counter({1: 128177, 0: 12380})
+
+Best parameters found: {'n_estimators': 491, 'max_depth': 19, 'min_samples_split': 11, 'min_samples_leaf': 3, 'max_features': 'sqrt', 'bootstrap': False}
+
+Model Evaluation:
+-----------------
+
+Accuracy: 0.9372
+
+ROC AUC: 0.9258
+
+Classification Report:
+
+              precision    recall  f1-score   support
+
+           0       0.76      0.40      0.52      6186
+           1       0.95      0.99      0.97     65837
+
+    accuracy                           0.94     72023
+   macro avg       0.85      0.69      0.74     72023
+weighted avg       0.93      0.94      0.93     72023
+
+
+Top 10 Most Important Features:
+
+                                              feature  importance
+2                                       capital_gains    0.178907
+4                               dividends_from_stocks    0.130101
+11                          education_advanced_degree    0.117936
+50                                          sex__male    0.079760
+6                                weeks_worked_in_year    0.074516
+0                                                 age    0.055961
+3                                      capital_losses    0.051235
+5                     num_persons_worked_for_employer    0.046782
+13                         education_college_graduate    0.040888
+14                     education_high_school_graduate    0.022345
+12                        education_below_high_school    0.016951
+15                             education_some_college    0.013631
+1                                       wage_per_hour    0.011499
+19                               marital_stat_married    0.010602
+69  detailed_household_and_family_stat_primary_hou...    0.009437
+
+confusion_matrix:
+[[ 2454  3732]
+ [  793 65044]]
+--------------------
+
+Confusion Matrix Values:
+--------------------
+
+True Negatives (TN): 2454
+
+False Positives (FP): 3732
+
+False Negatives (FN): 793
+
+True Positives (TP): 65044
+
+Confusion Matrix Percentages:
+
+-------------------------
+
+True Negatives (TN): 3.41%
+
+False Positives (FP): 5.18%
+
+False Negatives (FN): 1.10%
+
+True Positives (TP): 90.31%
+
+Feature Correlation Analysis:
+
+                             capital_gains  dividends_from_stocks  education_advanced_degree  sex__male  weeks_worked_in_year
+correlation_with_prediction      -0.358385              -0.208642                  -0.375158  -0.186068             -0.171250
+mean_value_when_predicted_1     166.233177             168.084114                   0.046339   0.450739             30.773642
+mean_value_when_predicted_0    9531.109332            2342.932861                   0.497382   0.898368             50.141977
+
+--------------------
+
+Detailed Model Performance Metrics:
+
+Accuracy: 0.9372
+
+True Positive Rate: 0.9880
+
+True Negative Rate: 0.3967
+
+Positive Predictive Value: 0.9457
+
+            fpr       tpr
+0      0.000000  0.000000
+1      0.000000  0.000015
+2      0.000000  0.000106
+3      0.000000  0.000122
+4      0.000000  0.000273
+...         ...       ...
+12608  0.979631  0.999970
+12609  0.979631  0.999985
+12610  0.995474  0.999985
+12611  0.995474  1.000000
+12612  1.000000  1.000000
+
+[12613 rows x 2 columns]
+
+Model Configuration:
+
+--------------------
+
+Model Parameters:
+
+n_estimators: 491
+
+max_depth: 19
+
+min_samples_split: 11
+
+min_samples_leaf: 3
+
+max_features: sqrt
+
+bootstrap: False
+
+Class Distribution in Training Data:
+
+Class counts: 
+target
+1    131088
+0     12380
+Name: count, dtype: int64
+
+Class proportions: 
+target
+1    0.913709
+0    0.086291
+Name: proportion, dtype: float64
+
+Training History:
+
+----------------
+
+No training history available for RandomForestClassifier
+
+Feature Importance Percentages (Top 10):
+
+                                              feature  importance_percentage
+2                                       capital_gains                  17.89
+4                               dividends_from_stocks                  13.01
+11                          education_advanced_degree                  11.79
+50                                          sex__male                   7.98
+6                                weeks_worked_in_year                   7.45
+0                                                 age                   5.60
+3                                      capital_losses                   5.12
+5                     num_persons_worked_for_employer                   4.68
+13                         education_college_graduate                   4.09
+14                     education_high_school_graduate                   2.23
+12                        education_below_high_school                   1.70
+15                             education_some_college                   1.36
+1                                       wage_per_hour                   1.15
+19                               marital_stat_married                   1.06
+69  detailed_household_and_family_stat_primary_hou...                   0.94
+
+Prediction Threshold Analysis:
+
+   threshold  accuracy
+0        0.1  0.917693
+1        0.2  0.923483
+2        0.3  0.929495
+3        0.4  0.933841
+4        0.5  0.937173
+5        0.6  0.936395
+6        0.7  0.928717
+7        0.8  0.906252
+8        0.9  0.829041
+
+Model Complexity Analysis:
+
+Prediction Confidence Analysis:
+
+                      actual          
+                       count      mean
+prediction_confidence                 
+(0.0185, 0.0848]         198  0.020202
+(0.0848, 0.15]           265  0.045283
+(0.15, 0.216]            372  0.099462
+(0.216, 0.281]           428  0.154206
+(0.281, 0.346]           483  0.258799
+(0.346, 0.412]           552  0.317029
+(0.412, 0.477]           643  0.398134
+(0.477, 0.542]           778  0.453728
+(0.542, 0.608]          1020  0.539216
+(0.608, 0.673]          1194  0.636516
+(0.673, 0.739]          1460  0.730137
+(0.739, 0.804]          2171  0.789037
+(0.804, 0.869]          4215  0.850771
+(0.869, 0.935]          8001  0.927759
+(0.935, 1.0]           50243  0.989411
+
+Model saved as best_model.pkl
