@@ -171,6 +171,38 @@ def classifier(ml_dir = 'ML', filename = filename):
             'mean_value_when_predicted_1': X_test[feature][y_pred == 1].mean(),
             'mean_value_when_predicted_0': X_test[feature][y_pred == 0].mean()
         })
+    
+    # Get top 15 features from feature importance
+    top_15_features = feature_importance['feature'][:15].tolist()
+
+    # Create a comprehensive analysis of each feature's impact
+    feature_analysis = pd.DataFrame()
+    for feature in top_15_features:
+        # Calculate basic statistics
+        average_positive = X_test[feature][y_test == 1].mean()
+        average_negative = X_test[feature][y_test == 0].mean()
+        
+        # Calculate the impact ratio
+        impact_ratio = average_positive / (average_negative + 1e-10)
+        
+        # Calculate correlation with target
+        correlation = np.corrcoef(X_test[feature], y_test)[0,1]
+        
+        # Store results
+        feature_analysis[feature] = pd.Series({
+            'correlation_with_target': correlation,
+            'average_value_class_1': average_positive,
+            'average_value_class_0': average_negative,
+            'impact_ratio': impact_ratio,
+            'feature_importance': feature_importance[feature_importance['feature'] == feature]['importance'].values[0]
+        })
+
+    # Sort features by absolute correlation value
+    feature_analysis = feature_analysis.reindex(feature_analysis.iloc[0].abs().sort_values(ascending=False).index, axis=1)
+
+    # Display the results
+    logging.info("\nFeature Impact Analysis for Top 15 Important Features:")
+    logging.info(f'\n{feature_analysis.round(4)}')
 
     logging.info("\nFeature Correlation Analysis:")
     logging.info(f'\n{correlations}')
