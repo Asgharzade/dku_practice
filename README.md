@@ -9,7 +9,54 @@ Python 3.8 or higher installed on your system.
 ### Python Requirements
 Preferably, install packages in a virtual environment.
 
+### Folder Structure
+Directory structure:
 
+```sh
+└── asgharzade-dku_practice/
+    ├── README.md
+    ├── Explore-Graph.ipynb
+    ├── Explore-Graph_executed.ipynb
+    ├── Explore-ML-FPostive.ipynb
+    ├── main.py
+    ├── notebook_runner.py
+    ├── postprocessing.py
+    ├── preprocessing.py
+    ├── requirements-light.txt
+    ├── requirements.txt
+    ├── ML/
+    │   ├── lgbn_v3.py
+    │   └── rfc_v1.py
+    ├── archive/
+    │   ├── Explore-ML-RFC.ipynb
+    │   ├── Explore-ML.ipynb
+    │   ├── Explore.ipynb
+    │   └── archived_mapping.ipynb
+    ├── data/
+    │   └── processing/
+    │       ├── broader_values_mapping.json
+    │       ├── citizenship_mapping.json
+    │       ├── class_worker_mapping.json
+    │       ├── education-recode.json
+    │       ├── household_status_mapping.json
+    │       ├── industry-recode.json
+    │       ├── martial-recode.json
+    │       ├── metadata.json
+    │       ├── migrationwithin-recode.json
+    │       ├── msa_migration_mapping.json
+    │       ├── occupasion-recode.json
+    │       ├── tax_status_mapping.json
+    │       ├── typeemployment-recode.json
+    │       └── unemployment-recode.json
+    ├── report/
+    │   └── processed/
+    │       ├── census_income_learn.csv.html
+    │       ├── census_income_learn.csv.json
+    │       ├── census_income_test.csv.html
+    │       └── corr.json
+    └── webapp/
+        └── app.py
+```
 ### Run the Project
 1. Clone the repository: 
 ```sh
@@ -20,7 +67,8 @@ git clone https://github.com/Asgharzade/dku_practice.git
 pip install -r requirements.txt
 ```
 
-3. run ```main.py```. This file runs the pre-processing and store the processed train/test datasets in the ```data/processed``` dir. 
+3. run ```main.py```. 
+This file runs the pre-processing and store the processed train/test datasets in the ```data/processed``` dir. 
 ```sh
 python main.py
 ```
@@ -443,3 +491,48 @@ Classification Report:
 | (0.8, 0.867]                   | 2771         | 0.840130 |
 | (0.867, 0.933]                 | 5763         | 0.905258 |
 | (0.933, 1.0]                   | 54242        | 0.987924 |
+
+---
+
+
+
+### Feature Importance Table with Explanations
+
+| **Feature**                          | **Feature Importance** | **Correlation with Target** | **Class 1: under $50K** | **Class 0: over $50K** | **Explanation**                                                                 |
+|--------------------------------------|-------------------------|-----------------------------|--------------------------|-------------------------|---------------------------------------------------------------------------------|
+| **capital_gains**                    | 710.0                  | -0.2342                    | 199.28                  | 4730.06                | Higher capital gains are strongly linked to earning 'over $50K'.               |
+| **weeks_worked_in_year**             | 618.0                  | -0.2142                    | 30.11                   | 48.04                  | More weeks worked correlates with 'over $50K' income.                          |
+| **sex__male**                        | 174.0                  | -0.1954                    | 44.10% male             | 78.90% male            | A higher percentage of males are in the 'over $50K' group.                     |
+| **num_persons_worked_for_employer**  | 685.0                  | -0.1796                    | 2.51                    | 4.04                   | Working for more employers is associated with earning 'over $50K'.             |
+| **dividends_from_stocks**            | 1060.0                 | -0.1769                    | 148.82                  | 1514.64                | Higher dividends from stocks are linked to 'over $50K' income.                 |
+| **class_of_worker_private_sector**   | 203.0                  | -0.0676                    | 47.53%                  | 59.59%                 | More private-sector workers are in the 'over $50K' group.                      |
+| **tax_filer_stat_individual_filer**  | 152.0                  | 0.0584                     | 31.09%                  | 21.52%                 | Individual tax filers are more common in the 'under $50K' group.               |
+| **age**                              | 1567.0                 | -0.0320                    | 44.55                   | 46.57                  | Older individuals are slightly more likely to earn 'over $50K'.                |
+| **migration_code_change_in_reg_same_area** | 163.0           | 0.0195                     | 47.25%                  | 43.78%                 | No significant impact between migration and income classes.                    |
+| **wage_per_hour**                    | 518.0                  | -0.0016                    | 73.90                   | 75.74                  | Hourly wages show minimal difference between income groups.                    |
+| **capital_losses**                   | 524.0                  | -0.1912                    | 34.19                   | 285.82                 | Higher capital losses are linked to 'over $50K' earners.                       |
+| **occupation_exec_managerial**       | 480.0                  | -0.1674                    | 9.25%                   | 20.45%                 | Managerial roles are more common among 'over $50K' earners.                   |
+| **education_bachelor_or_higher**     | 592.0                  | -0.1836                    | 17.12%                  | 45.38%                 | Higher education levels strongly correlate with 'over $50K'.                   |
+| **hours_per_week**                   | 742.0                  | -0.1524                    | 32.34                   | 42.08                  | Individuals working more hours per week are more likely to earn 'over $50K'.   |
+| **relationship_married_civ_spouse**  | 365.0                  | -0.1489                    | 20.68%                  | 54.31%                 | Being married correlates strongly with earning 'over $50K'.                    |
+
+---
+
+### Feature Insights
+
+- **Capital Gains:** Individuals earning 'over $50K' report significantly higher capital gains compared to those earning 'under $50K'.
+- **Weeks Worked in a Year:** Longer workweeks are associated with a higher likelihood of earning 'over $50K'.
+- **Sex (Male):** Males are more represented in the 'over $50K' group than females.
+- **Number of Employers Worked For:** Working for more employers tends to correlate with higher earnings.
+- **Dividends from Stocks:** People earning 'over $50K' report higher dividends from stocks.
+- **Private Sector Workers:** A larger proportion of private-sector workers are in the 'over $50K' group.
+- **Tax Filing Status (Individual Filer):** Individual tax filers are more prevalent in the 'under $50K' category.
+- **Age:** Slightly older individuals are more likely to earn 'over $50K'.
+- **Migration (Change in Region):** Minimal impact on income groups, suggesting migration patterns don't strongly affect income.
+- **Wage per Hour:** Differences in hourly wages between the two groups are negligible.
+- **Capital Losses:** Higher capital losses are associated with 'over $50K' income.
+- **Executive/Managerial Occupations:** People in executive or managerial roles are more likely to earn 'over $50K'.
+- **Education (Bachelor or Higher):** Higher education levels have a strong positive correlation with earning 'over $50K'.
+- **Hours per Week:** More hours worked per week significantly correlate with higher income.
+- **Marital Status (Married):** Married individuals are much more likely to earn 'over $50K'.
+
