@@ -11,6 +11,7 @@ import optuna
 import pickle
 import os
 import datetime
+import seaborn as sns
 
 # Configure logging
 filename = os.path.basename(__file__).split('.')[0]
@@ -183,11 +184,11 @@ def classifier(ml_dir = 'ML', filename = filename):
     logging.info(f"\nPositive Predictive Value: {cm[1,1] / (cm[0,1] + cm[1,1]):.4f}")
 
     # Distribution of probabilities
-    plt.figure(figsize=(10, 5))
-    plt.hist(y_pred_proba, bins=50)
+    plt.figure(figsize=(8, 5))
+    sns.kdeplot(y_pred_proba, shade=True)
     plt.title('Distribution of Prediction Probabilities')
     plt.xlabel('Probability')
-    plt.ylabel('Count')
+    plt.ylabel('Density')
     # plt.show()
     plt.savefig(f'ML/{filename}_prediction_probabilities.png')
 
